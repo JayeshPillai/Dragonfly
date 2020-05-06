@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
+    <!-- Meta Mobile -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Dragonfly 360°">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="description" content="A film by Jayesh Pillai"/>
+    <!-- Meta OG -->
+    <meta property="og:title" content="Dragonfly | 360° Movie" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.dragonflymovie.in" />
+    <meta property="og:image" content="http://www.dragonflymovie.in/assets/og-image.jpg" />
+    <title>Dragonfly | 360° VR Film</title>
+    <!-- Styles -->
+    <link rel="icon" href="_assets/site/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="_assets/site/icon.png">
+    <link rel="apple-touch-startup-image" href="_assets/site/mobile-splash.jpeg">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <style type="text/css">
+        html {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        .a-enter-vr {
+            display: none;
+        }    
+
+    </style>
+    
+    <script type="text/javascript" src="js/aframe.min.js"></script>
+    <script type="text/javascript" src="js/aframe-stereo.js"></script>
+    
+    <!-- <script type="text/javascript">
+    
+    var initRotate = -95;
+    var rotateControl = 0.025;
+	
+    AFRAME.registerComponent("initial-load", {
+        
+	init: function () {
+            //Inits
+            var sceneEl = document.querySelector("a-scene");
+            var vw = window.innerWidth;
+            var memoryToDream = document.querySelector("#memory-to-dream");
+            var dreamToMemory = document.querySelector("#dream-to-memory");
+            memoryToDream.setAttribute("visible", false);
+            dreamToMemory.setAttribute("visible", false);
+            var reticle = document.querySelector("#reticle");
+            reticle.setAttribute("visible", false);
+            if (vw > 768) {
+                 sceneEl.setAttribute('vr-mode-ui', {enabled: false});
+             } else {
+                 sceneEl.setAttribute('vr-mode-ui', {enabled: false});
+            }
+            // sceneEl.setAttribute('vr-mode-ui', {enabled: true});
+            var sky1 = document.querySelector("#sky1");
+            var sky2 = document.querySelector("#sky2");
+            sky1.setAttribute("src","#main");
+            sky2.setAttribute("src","#main");
+	    
+	    sky1.setAttribute("rotation", { x:0, y:initRotate, z:0 });
+	
+            //Event Listeners
+            sceneEl.addEventListener("enter-vr", function(){
+                var quote = document.querySelector("#quote");
+                var subQuote = document.querySelector("#subquote");
+                var logo = document.querySelector("#logo");
+                var comingSoon = document.querySelector("#coming-soon");
+                quote.style.display = "none";
+                subQuote.style.display = "none";
+                logo.style.display = "none";
+                comingSoon.style.display = "none";
+                sky1.setAttribute("src","#left");
+                sky2.setAttribute("src","#right");
+            });
+            sceneEl.addEventListener("exit-vr", function(){
+                var quote = document.querySelector("#quote");
+                var subQuote = document.querySelector("#subquote");
+                var logo = document.querySelector("#logo");
+                var comingSoon = document.querySelector("#coming-soon");
+                quote.style.display = "block";
+                subQuote.style.display = "block";
+                logo.style.display = "block";
+                comingSoon.style.display = "block";
+                sky1.setAttribute("src","#main");
+                sky2.setAttribute("src","#main");
+            });
+        },
+
+	tick: function () {
+            if (initRotate < -90) {
+                var sky1 = document.querySelector("#sky1");
+                sky1.setAttribute("rotation", { x:0, y:initRotate, z:0 });
+                rotateControl = rotateControl - 0.00000000025;
+                initRotate = initRotate + rotateControl;
+            }
+	    } 
+    });
+
+    </script> -->
+</head>
+<body>
+    <!-- Website Content -->
+    <div id="wrapper">
+            <p id="quote"></p>
+            <p id="subquote">She follows the...</p>
+            <img id="logo" src="_assets/logo.svg"/>
+            <p id="coming-soon"> 
+		A film by Jayesh Pillai <br/>
+		<span style="font-size: 12px;">( &nbsp; 360° &nbsp; | &nbsp; Stereo 3D &nbsp; | &nbsp; Spatial Audio &nbsp; )</span> 
+	    </p>
+    </div>
+
+
+    <a-scene antialias="true" initial-load>
+        <a-assets>
+          <img id="left" src="_assets/scene/left.jpg">
+          <img id="right" src="_assets/scene/right.jpg">
+          <img id="main" src="_assets/scene/left.jpg">
+        </a-assets>
+
+        <a-entity id="camera" camera look-controls position="0 0 0" stereocam="eye:left">
+        </a-entity>
+        
+        <a-sky id="sky1" stereo="eye:left" rotation="0 -89 0" src="#main"></a-sky>
+        <a-sky id="sky2" stereo="eye:right"></a-sky>
+        
+        <canvas class="a-canvas a-grab-cursor" data-aframe-canvas="true" width="2532" height="1452"></canvas>
+    </a-scene>
+
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
